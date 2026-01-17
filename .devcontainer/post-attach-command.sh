@@ -11,3 +11,5 @@ if [ -f .devcontainer/gemini_key.txt ]; then
     # Delete gemini_key.txt to prevent any accidental leakage.
     rm .devcontainer/gemini_key.txt;
 fi
+
+cp .devcontainer/.bashrc /root/.bashrc

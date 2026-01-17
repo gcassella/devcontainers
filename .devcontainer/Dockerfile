@@ -98,13 +98,3 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   openssh-client \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
-# Persist bash history across dev container sessions.
-RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && echo "$SNIPPET" >> "/root/.bashrc"
-
-# Set up fzf key bindings and fuzzy completion
-RUN echo "eval \"\$(fzf --bash)\"" >> "/root/.bashrc"
-
-# Activate virtualenv when shell starts
-RUN echo "uv sync && source .venv/bin/activate" >> "/root/.bashrc"
