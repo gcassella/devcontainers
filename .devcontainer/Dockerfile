@@ -52,7 +52,7 @@ USER root
 # MAIN IMAGE #
 ##############
 
-FROM ghcr.io/astral-sh/uv:debian-slim
+FROM ghcr.io/astral-sh/uv:debian-slim AS devcontainer
 
 # Set UV_LINK_MODE=copy explicitly as we are running in a dev container and cannot
 # hardlink files from the cache (in the container) to our .venv (in the host mount).
