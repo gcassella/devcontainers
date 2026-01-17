@@ -1,0 +1,6 @@
+{
+    "extensions.supportNodeGlobalNavigator": true,
+    // Gemini CLI Companion will forward a new port on each reload, which quickly
+    // populates a lot of forwarded ports if we restore on reload!
+    "remote.restoreForwardedPorts": false
+}

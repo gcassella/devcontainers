@@ -1,0 +1,29 @@
+{
+    "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json",
+    // Base Dockerfile.
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "initializeCommand": "sh .devcontainer/init-command.sh",
+    "postStartCommand": "sh .devcontainer/post-start-command.sh",
+    "postAttachCommand": "sh .devcontainer/post-attach-command.sh",
+    // Set up extensions.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-toolsai.jupyter",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "vscode-icons-team.vscode-icons",
+                "google.gemini-cli-vscode-ide-companion",
+                "astral-sh.ty",
+                "charliermarsh.ruff",
+                "meta.sapling-scm"
+            ]
+        }
+    },
+    "mounts": [
+        // Persist bash history across dev container rebuilds.
+        "source=projectname-bashhistory,target=/commandhistory,type=volume"
+    ]
+}
