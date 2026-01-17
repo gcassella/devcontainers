@@ -105,3 +105,6 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
 
 # Set up fzf key bindings and fuzzy completion
 RUN echo "eval \"\$(fzf --bash)\"" >> "/root/.bashrc"
+
+# Activate virtualenv when shell starts
+RUN echo "uv sync && source .venv/bin/activate" >> "/root/.bashrc"
