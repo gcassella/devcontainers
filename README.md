@@ -11,8 +11,6 @@ Contains a set of devcontainer configurations and a management utility to mainta
 
 ## Usage
 
-Uses `uv` for dependency management and script execution.
-
 ### Prerequisites
 
 *   [uv](https://github.com/astral-sh/uv)
@@ -20,7 +18,7 @@ Uses `uv` for dependency management and script execution.
 
 ### Management CLI
 
-The `manage.py` script is the entry point for all operations.
+The `manage.py` script is the entry point for all operations. This uses the `typer` library, with inline script dependencies managed by `uv`.
 
 ```bash
 # List available commands
@@ -32,21 +30,21 @@ uv run ./manage.py --help
 *   **`create <name>`**
     Create a new devcontainer derived from `base`.
     ```bash
-    ./manage.py create my-new-language
+    uv run ./manage.py create my-new-language
     ```
     This creates a new directory `my-new-language`, sets up the folder structure, and performs an initial sync from `base`.
 
 *   **`sync-files`**
     Propagate changes from `base` to all derived containers.
     ```bash
-    ./manage.py sync-files
+    uv run ./manage.py sync-files
     ```
     Use this after modifying `base` files to update downstream containers. See [Syncing Mechanism](#syncing-mechanism) for details.
 
 *   **`build-images`**
     Build and push Docker images for all containers.
     ```bash
-    ./manage.py build-images
+    uv run ./manage.py build-images
     ```
     Images are tagged as `{REGISTRY}/devcontainer-{name}:latest`.
     *   Default registry: `gwmcassella`
@@ -55,7 +53,7 @@ uv run ./manage.py --help
 *   **`update-all`**
     Run `sync-files` followed by `build-images`.
     ```bash
-    ./manage.py update-all
+    uv run ./manage.py update-all
     ```
 
 ## Syncing Mechanism
