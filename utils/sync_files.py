@@ -18,6 +18,7 @@ from utils import shared
 OPEN_SYNC_PATTERN = r"{}\s*?\[SYNC:\s+([\w\d]+)\]\n?"
 CLOSE_SYNC_PATTERN = r"{}\s*?\[\/SYNC:\s+([\w\d]+)\]\n?"
 DOCKERFILE_TEMPLATE = """FROM gwmcassella/devcontainer-base:latest\n"""
+COMMENT_PREFIX_BY_FILE_SUFFIX = {}
 
 
 @dataclasses.dataclass(frozen=True)
@@ -246,7 +247,6 @@ def sync_file(
   *,
   base_path: pathlib.Path,
   derived_path: pathlib.Path,
-  comment_prefix: str = "#",
 ) -> None:
   """Synchronize a file from base_path to derived_path.
 
@@ -260,8 +260,6 @@ def sync_file(
   Args:
     base_path: Path to base file.
     derived_path: Path to derived file.
-    comment_prefix: Substring indicating beginning of comment, used to extend
-          match for sync tags so we don't snip comment prefixes.
 
   Raises:
     ValueError if base path does not exist, or path names do not match.
@@ -292,7 +290,7 @@ def sync_file(
     apply_sync_tags(
       base_path=base_path,
       derived_path=derived_path,
-      comment_prefix=comment_prefix,
+      comment_prefix=COMMENT_PREFIX_BY_FILE_SUFFIX.get(derived_path.suffix, '#'),
     )
     return
 
