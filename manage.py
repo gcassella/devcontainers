@@ -12,6 +12,7 @@ from typing import Annotated
 import typer # pyright: ignore[reportMissingImports]
 
 from utils import build_images
+from utils import create_repo
 from utils import sync_files
 from utils import update_all
 
@@ -22,6 +23,15 @@ app = typer.Typer()
 def build_images_command():
     """Build and push docker images."""
     build_images.main()
+
+
+@app.command(name="create-repo")
+def create_repo_command(
+    path: Annotated[pathlib.Path, typer.Argument(help="Path to the new repository.")],
+    container: Annotated[str, typer.Argument(help="Name of the devcontainer to use.")]
+):
+    """Create a new git repository based on a devcontainer."""
+    create_repo.main(destination=path, container=container)
 
 
 @app.command(name="sync-files")
