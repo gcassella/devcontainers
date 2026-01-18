@@ -1,0 +1,22 @@
+{
+    "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json",
+    // Base Dockerfile.
+    "image": "gwmcassella/devcontainer-base:latest",
+    "initializeCommand": "sh .devcontainer/init-command.sh",
+    "postStartCommand": "sh .devcontainer/post-start-command.sh",
+    "postAttachCommand": "sh .devcontainer/post-attach-command.sh",
+    // Set up extensions.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscode-icons-team.vscode-icons",
+                "google.gemini-cli-vscode-ide-companion",
+                "meta.sapling-scm"
+            ]
+        }
+    },
+    "mounts": [
+        // Persist bash history across dev container rebuilds.
+        "source=projectname-bashhistory,target=/commandhistory,type=volume"
+    ]
+}
