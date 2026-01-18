@@ -17,7 +17,7 @@ DOCKERFILE_NAME = "Dockerfile"
 REGISTRY_PATH = os.environ.get('DOCKER_REGISTRY_PATH') or 'gwmcassella'
 
 def run_command(command: list[str], cwd: pathlib.Path | None = None) -> None:
-  """Runs a shell command and raises an exception on failure."""
+  """Run a shell command in cwd and raise an exception on failure."""
   cmd_str = " ".join(command)
   print(f"Running: {cmd_str}")
   try:
@@ -32,6 +32,7 @@ def build_and_push_image(
   dockerfile_path: pathlib.Path,
   image_name: str,
 ) -> None:
+  """Build image at dockerfile_path and pushes image_name to registry."""
   if not dockerfile_path.exists():
     raise ValueError(f"Dockerfile not found at {dockerfile_path}")
 
@@ -51,6 +52,7 @@ def build_and_push_image(
 
 
 def main():
+  """Build all devcontainer images and push to registry."""
   root = pathlib.Path(os.getcwd())
   container_paths = shared.get_container_paths(root)
   container_paths = sorted(

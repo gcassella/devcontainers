@@ -319,7 +319,7 @@ def recursive_sync_files(
 
 
 def main():
-  """Entrypoint."""
+  """Synchronize all files from base to derived containers."""
   root = pathlib.Path(os.getcwd())
 
   container_paths_by_name = {

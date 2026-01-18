@@ -8,6 +8,7 @@ from utils import build_images
 from utils import sync_files
 
 def main():
+  """Update all containers; sync files, build, and push."""
   sync_files.main()
   build_images.main()
 
