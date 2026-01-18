@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# [SYNC: ghcli]
 # If GitHub CLI is authorized on host, read temporary token store and auth in container.
 if [ -f .devcontainer/gh_token.txt ]; then
     # Auth with token passed in by init-command.sh
@@ -10,7 +11,9 @@ if [ -f .devcontainer/gh_token.txt ]; then
 else
     echo "gh CLI auth not found on host, skipping auto-login.";
 fi
+# [/SYNC: ghcli]
 
+# [SYNC: gemini]
 # If GEMINI_API_KEY present on host, read API key and store in the container
 if [ -f .devcontainer/gemini_key.txt ]; then 
     mv .devcontainer/gemini_key.txt /root/.gemini_key
@@ -29,3 +32,4 @@ fi
 if [ -f /run/.containerenv ]; then
     rm /run/.containerenv;
 fi
+# [/SYNC: gemini]
