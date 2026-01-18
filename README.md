@@ -1,6 +1,6 @@
 # Devcontainer Templates & Management
 
-This repository contains a set of development container configurations and a management utility to maintain them. It implements a hierarchical system where a `base` configuration is propagated to derived containers (like `python`), ensuring consistency across different development environments while allowing for specific customizations.
+Contains a set of devcontainer configurations and a management utility to maintain them. Implements a hierarchical system where a `base` configuration is propagated to derived containers (like `python`).
 
 ## Structure
 
@@ -11,7 +11,7 @@ This repository contains a set of development container configurations and a man
 
 ## Usage
 
-This project uses `uv` for dependency management and script execution.
+Uses `uv` for dependency management and script execution.
 
 ### Prerequisites
 
@@ -30,21 +30,21 @@ uv run ./manage.py --help
 #### Commands
 
 *   **`create <name>`**
-    Creates a new devcontainer derived from `base`.
+    Create a new devcontainer derived from `base`.
     ```bash
     ./manage.py create my-new-language
     ```
     This creates a new directory `my-new-language`, sets up the folder structure, and performs an initial sync from `base`.
 
 *   **`sync-files`**
-    Propagates changes from `base` to all derived containers.
+    Propagate changes from `base` to all derived containers.
     ```bash
     ./manage.py sync-files
     ```
     Use this after modifying `base` files to update downstream containers. See [Syncing Mechanism](#syncing-mechanism) for details.
 
 *   **`build-images`**
-    Builds and pushes Docker images for all containers.
+    Build and push Docker images for all containers.
     ```bash
     ./manage.py build-images
     ```
@@ -53,7 +53,7 @@ uv run ./manage.py --help
     *   Override via env var: `DOCKER_REGISTRY_PATH`
 
 *   **`update-all`**
-    Runs `sync-files` followed by `build-images`.
+    Run `sync-files` followed by `build-images`.
     ```bash
     ./manage.py update-all
     ```
@@ -65,7 +65,7 @@ The `sync-files` utility ensures derived containers stay up-to-date with `base` 
 1.  **JSON Files (e.g., `devcontainer.json`)**:
     *   Lists (like `extensions`) are merged. derived containers inherit all base extensions and can add their own.
     *   Other keys in derived files are overwritten by values from `base` if they exist in `base`.
-    *   *Special Case*: The `image` property is automatically updated to reflect the derived container's name (replacing 'base' with the folder name).
+    *   *Special Case*: The `image` property in `devcontainer.json` is automatically updated to reflect the derived container.
 
 2.  **Text Files (Code/Scripts)**:
     *   **Full Copy**: If a file exists in `base` but not in the derived folder, it is copied over entirely.
@@ -75,7 +75,7 @@ The `sync-files` utility ensures derived containers stay up-to-date with `base` 
         shared_code = "this comes from base"
         # [/SYNC: region_name]
         ```
-        Content within these tags in `base` will overwrite the corresponding tagged content in derived files. This allows derived files to have custom logic outside the sync blocks while keeping shared logic identical.
+        Content within these tags in `base` will overwrite the corresponding tagged content in derived files. Note that the sync tags are format agnostic and can be used in any file, but you may need to register a suitable comment prefix in `utils.sync_files.COMMENT_PREFIX_BY_FILE_SUFFIX`. The default comment prefix is `#`, suitable for bash and python files.
 
 3.  **Dockerfiles**:
     *   If a derived container is missing a `Dockerfile`, a template inheriting from the base image is created:
@@ -89,6 +89,3 @@ To add a new feature to all containers:
 1.  Modify `base`.
 2.  Run `./manage.py sync-files`.
 3.  Commit changes in `base` and the updates in derived folders.
-
-----
-*If it wasn't obvious, Gemini wrote this README.*
