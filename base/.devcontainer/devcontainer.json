@@ -3,8 +3,9 @@
     // Base Dockerfile.
     "image": "gwmcassella/devcontainer-base:latest",
     "initializeCommand": "sh .devcontainer/init-command.sh",
-    "postStartCommand": "sh .devcontainer/post-start-command.sh",
-    "postAttachCommand": "sh .devcontainer/post-attach-command.sh",
+    "postCreateCommand": ".devcontainer/post-create-command.sh",
+    "postStartCommand": ".devcontainer/post-start-command.sh",
+    "postAttachCommand": ".devcontainer/post-attach-command.sh",
     // Set up extensions.
     "customizations": {
         "vscode": {
@@ -12,7 +13,13 @@
                 "vscode-icons-team.vscode-icons",
                 "google.gemini-cli-vscode-ide-companion",
                 "meta.sapling-scm"
-            ]
+            ],
+            "settings": {
+                "terminal.integrated.stickyScroll.enabled": false,
+                // Gemini CLI Companion will forward a new port on each reload, which quickly
+                // populates a lot of forwarded ports if we restore on reload!
+                "remote.restoreForwardedPorts": false
+            }
         }
     },
     "mounts": [

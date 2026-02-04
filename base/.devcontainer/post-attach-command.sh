@@ -2,7 +2,6 @@
 
 # [SYNC: secrets]
 # Clean up injected secrets in post-attach as initCommand may run on attach.
-
 if [ -f .devcontainer/gh_token.txt ]; then
     # Delete gh_token.txt to prevent any accidental leakage.
     rm .devcontainer/gh_token.txt;
@@ -13,7 +12,3 @@ if [ -f .devcontainer/gemini_key.txt ]; then
     rm .devcontainer/gemini_key.txt;
 fi
 # [/SYNC: secrets]
-
-# [SYNC: bashrc]
-cp .devcontainer/.bashrc /root/.bashrc
-# [/SYNC: bashrc]

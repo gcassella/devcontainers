@@ -68,29 +68,39 @@ RUN ln -s /home/linuxbrew/.linuxbrew/bin/sl /usr/local/bin/sl
 
 # Install dependencies and utilities.
 RUN apt-get update && apt-get install -y --no-install-recommends \
+  # For gemini.
   nodejs \
+  # For running makefiles.
   make \
+  # For dependencies.
   python3 \
+  # For dependencies.
   g++ \
+  # For docs.
   man-db \
-  curl \
-  dnsutils \
-  less \
+  # For JSON parsing.
   jq \
-  bc \
+  # For Git.
   gh \
   git \
+  # For history search.
+  fzf \
+  # For multiplexing.
+  tmux \
+  # Powerline for tmux.
+  powerline \
+  # Self explanatory.
   unzip \
-  rsync \
   ripgrep \
+  curl \
+  dnsutils \
   procps \
   psmisc \
   lsof \
   socat \
-  fzf \
-  tmux \
   ca-certificates \
   openssl \
   openssh-client \
+  locales \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*

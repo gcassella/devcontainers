@@ -1,8 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json",
     "initializeCommand": "sh .devcontainer/init-command.sh",
-    "postStartCommand": "sh .devcontainer/post-start-command.sh",
-    "postAttachCommand": "sh .devcontainer/post-attach-command.sh",
+    "postStartCommand": ".devcontainer/post-start-command.sh",
+    "postAttachCommand": ".devcontainer/post-attach-command.sh",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -14,11 +14,25 @@
                 "astral-sh.ty",
                 "charliermarsh.ruff",
                 "meta.sapling-scm"
-            ]
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "tmux",
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/usr/bin/zsh"
+                    },
+                    "tmux": {
+                        "path": "/usr/bin/tmux"
+                    }
+                },
+                "remote.restoreForwardedPorts": false,
+                "terminal.integrated.stickyScroll.enabled": false
+            }
         }
     },
     "mounts": [
         "source=projectname-bashhistory,target=/commandhistory,type=volume"
     ],
-    "image": "gwmcassella/devcontainer-python:latest"
+    "image": "gwmcassella/devcontainer-python:latest",
+    "postCreateCommand": ".devcontainer/post-create-command.sh"
 }
