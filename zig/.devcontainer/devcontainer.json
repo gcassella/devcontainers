@@ -10,7 +10,8 @@
             "extensions": [
                 "vscode-icons-team.vscode-icons",
                 "google.gemini-cli-vscode-ide-companion",
-                "meta.sapling-scm"
+                "meta.sapling-scm",
+                "ms-vscode.cpptools"
             ],
             "settings": {
                 "terminal.integrated.stickyScroll.enabled": false,
@@ -20,5 +21,8 @@
     },
     "mounts": [
         "source=projectname-bashhistory,target=/commandhistory,type=volume"
-    ]
+    ],
+    "remoteEnv": {
+        "PATH": "${containerEnv:PATH}:/zig-linux-x86_64-0.10.0"
+    }
 }
