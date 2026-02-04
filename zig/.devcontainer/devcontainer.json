@@ -1,0 +1,24 @@
+{
+    "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json",
+    "image": "gwmcassella/devcontainer-zig:latest",
+    "initializeCommand": "sh .devcontainer/init-command.sh",
+    "postCreateCommand": ".devcontainer/post-create-command.sh",
+    "postStartCommand": ".devcontainer/post-start-command.sh",
+    "postAttachCommand": ".devcontainer/post-attach-command.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscode-icons-team.vscode-icons",
+                "google.gemini-cli-vscode-ide-companion",
+                "meta.sapling-scm"
+            ],
+            "settings": {
+                "terminal.integrated.stickyScroll.enabled": false,
+                "remote.restoreForwardedPorts": false
+            }
+        }
+    },
+    "mounts": [
+        "source=projectname-bashhistory,target=/commandhistory,type=volume"
+    ]
+}

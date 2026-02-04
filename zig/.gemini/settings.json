@@ -1,0 +1,150 @@
+{
+    "$schema": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/schemas/settings.schema.json",
+    "general": {
+        "previewFeatures": true,
+        "preferredEditor": "vscode",
+        "enableAutoUpdate": false,
+        "enableAutoUpdateNotification": true,
+        "checkpointing": {
+            "enabled": true
+        },
+        "enablePromptCompletion": false,
+        "debugKeystrokeLogging": false,
+        "retryFetchErrors": true,
+        "sessionRetention": {
+            "enabled": true,
+            "maxAge": "30d",
+            "maxCount": 10,
+            "minRetention": "1d"
+        }
+    },
+    "output": {
+        "format": "text"
+    },
+    "ui": {
+        "theme": "Dracula",
+        "hideWindowTitle": false,
+        "showStatusInTitle": true,
+        "dynamicWindowTitle": true,
+        "showHomeDirectoryWarning": true,
+        "hideTips": false,
+        "hideBanner": false,
+        "hideContextSummary": false,
+        "footer": {
+            "hideCWD": true,
+            "hideSandboxStatus": true,
+            "hideModelInfo": false,
+            "hideContextPercentage": false
+        },
+        "hideFooter": false,
+        "showMemoryUsage": true,
+        "showLineNumbers": true,
+        "showCitations": true,
+        "showModelInfoInChat": true,
+        "useFullWidth": true,
+        "useAlternateBuffer": false,
+        "incrementalRendering": false,
+        "accessibility": {
+            "enableLoadingPhrases": true,
+            "screenReader": false
+        }
+    },
+    "ide": {
+        "enabled": true,
+        "hasSeenNudge": true
+    },
+    "privacy": {
+        "usageStatisticsEnabled": false
+    },
+    "context": {
+        "loadMemoryFromIncludeDirectories": true,
+        "fileFiltering": {
+            "respectGeminiIgnore": true,
+            "respectGitIgnore": true,
+            "enableFuzzySearch": true,
+            "enableRecursiveFileSearch": true
+        }
+    },
+    "tools": {
+        // NOTE: generally sandboxing is a good idea. However, here we are
+        // running in a dev container, providing our own sandboxing.
+        "sandbox": "false",
+        "shell": {
+            "enableInteractiveShell": true,
+            "pager": "moor",
+            "showColor": true,
+            "inactivityTimeout": 300,
+            "enableShellOutputEfficiency": true
+        },
+        // NOTE: despite the scary name, this is actually a fairly safe option.
+        // The only tool calls that are auto-accepted are ones marked 'safe',
+        // such as reading files or searching the web.
+        "autoAccept": true,
+        "allowed": [
+            "run_shell_command(ls)",
+            "run_shell_command(git)",
+            "run_shell_command(sl)",
+            "run_shell_command(grep)",
+            "run_shell_command(ripgrep)"
+        ],
+        "useRipgrep": true,
+        "enableToolOutputTruncation": true,
+        "truncateToolOutputLines": 1000,
+        "truncateToolOutputThreshold": 4000000,
+        "disableLLMCorrection": false,
+        "enableHooks": true
+    },
+    "useWriteTodos": true,
+    "security": {
+        "disableYoloMode": false,
+        "enablePermanentToolApproval": false
+    },
+    "experimental": {
+        "enableAgents": true,
+        "extensionManagement": true,
+        "extensionConfig": true,
+        "extensionReloading": true,
+        "jitContext": false,
+        "skills": true,
+        "codebaseInvestigatorSettings": {
+            "enabled": true,
+            "maxNumTurns": 10,
+            "maxTimeMinutes": 3,
+            "thinkingBudget": 8192,
+            "model": "auto"
+        },
+        "useOSC52Paste": false,
+        "cliHelpAgentSettings": {
+            "enabled": true
+        },
+        "plan": true
+    },
+    "skills": {
+        "disabled": []
+    },
+    "hooks": {
+        "enabled": true,
+        "disabled": [],
+        "notifications": true,
+        "BeforeAgent": [],
+        "AfterAgent": [],
+        "BeforeModel": [],
+        "AfterModel": [],
+        "BeforeTool": [],
+        "AfterTool": [],
+        "Notification": [],
+        "SessionStart": [],
+        "SessionEnd": [],
+        "PreCompress": [],
+        "BeforeToolSelection": []
+    },
+    "telemetry": {
+        "enabled": false
+    }
+    // "model": {},
+    // "modelConfigs" : {}
+    // "agents": {}
+    // "admin": {}
+    // "mcpServers": {}
+    // "mcp": {}
+}
