@@ -66,8 +66,6 @@
         }
     },
     "tools": {
-        // NOTE: generally sandboxing is a good idea. However, here we are
-        // running in a dev container, providing our own sandboxing.
         "sandbox": "false",
         "shell": {
             "enableInteractiveShell": true,
@@ -76,9 +74,6 @@
             "inactivityTimeout": 300,
             "enableShellOutputEfficiency": true
         },
-        // NOTE: despite the scary name, this is actually a fairly safe option.
-        // The only tool calls that are auto-accepted are ones marked 'safe',
-        // such as reading files or searching the web.
         "autoAccept": true,
         "allowed": [
             "run_shell_command(ls)",
@@ -141,10 +136,4 @@
     "telemetry": {
         "enabled": false
     }
-    // "model": {},
-    // "modelConfigs" : {}
-    // "agents": {}
-    // "admin": {}
-    // "mcpServers": {}
-    // "mcp": {}
 }
